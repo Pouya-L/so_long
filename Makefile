@@ -6,7 +6,7 @@
 #    By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 13:37:11 by plashkar          #+#    #+#              #
-#    Updated: 2023/09/25 10:27:19 by plashkar         ###   ########.fr        #
+#    Updated: 2023/09/27 16:57:41 by plashkar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ LIBFT_A = $(LIBFT_DIR)/libft.a
 SO_LONG_LIB = so_long.a
 
 SRC = \
-	src/test.c
+	src/test.c \
+	src/utils.c \
 
 
 # BONUS = \
