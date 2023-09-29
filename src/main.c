@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 15:38:58 by plashkar          #+#    #+#             */
-/*   Updated: 2023/09/27 17:43:58 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/09/29 15:26:07 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(void)
 {
-	// t_win_data	data;
 	t_data		img;
 
 	img.mlx = mlx_init();

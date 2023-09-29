@@ -6,7 +6,7 @@
 #    By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 13:37:11 by plashkar          #+#    #+#              #
-#    Updated: 2023/09/27 16:57:41 by plashkar         ###   ########.fr        #
+#    Updated: 2023/09/29 10:03:21 by plashkar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = so_long
 CC = cc
 
 STANDARD_FLAGS 	= -Wall -Werror -Wextra -g
-MINILIBX_FLAGS	= -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz minilibx-linux/libmlx.a
+MINILIBX_FLAGS	= minilibx-linux/libmlx.a -Lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 INCLUDE = -Iincludes
 

@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:50:07 by plashkar          #+#    #+#             */
-/*   Updated: 2023/09/27 17:46:20 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/09/29 11:38:02 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 #include <stdlib.h>
 #include <X11/X.h>
 #include <X11/keysym.h>
+
+//Color codes for ft_printf
+# define DEFAULT "\033[0m"
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define YELLOW "\033[0;33m"
+# define BLUE "\033[0;34m"
+# define PURPLE "\033[0;35m"
+# define CYAN "\033[0;36m"
+# define WHITE "\033[0;37m"
 
 typedef struct	s_data {
 	void	*mlx;
@@ -29,6 +39,8 @@ typedef struct	s_data {
 }	t_data;
 
 
+
+
 typedef struct shape_info {
 	int			x;
 	int			y;
@@ -38,6 +50,24 @@ typedef struct shape_info {
 	int			width;
 	double		angle;
 }	shape_info;
+
+typedef struct s_layout {
+	int	row;
+	int	col;
+	int	exit;
+	int	player;
+	int	enemy;
+	int	collect;
+}	t_layout;
+
+typedef struct s_map_error {
+	int	inv_exit;
+	int	inv_player;
+	int	inv_collect;
+	int	inv_shape;
+	int	inv_border;
+	int	inv_char;
+}	t_map_error;
 
 //shapes and colors
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
