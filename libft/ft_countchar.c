@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_countchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 16:23:19 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/03 17:02:50 by plashkar         ###   ########.fr       */
+/*   Created: 2023/10/03 10:49:25 by plashkar          #+#    #+#             */
+/*   Updated: 2023/10/03 11:05:10 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*memset - fill memory with a constant byte*/
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+int	ft_countchar(char *str, char c)
 {
-	unsigned char	*ptr;
-	size_t			i;
+	int	cnt;
+	int	i;
 
-	ptr = s;
+	cnt = 0;
 	i = 0;
-	while (i < n)
+	while (str[i])
 	{
-		ptr[i] = (unsigned char)c;
+		if (str[i] == c)
+			cnt++;
 		i++;
 	}
-	return (s);
+	return (cnt);
 }
-
-/*#include <stdio.h>
-
-int main (void)
-{
-	char str[] = "This is probabaly gonna be censored";
-	printf ("the original string is: %s", str);
-	printf ("\n");
-	ft_memset(str + 27, 161, 8);
-	printf ("the new string is %s\n", str);
-	return (0);
-}*/
