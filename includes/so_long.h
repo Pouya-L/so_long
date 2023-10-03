@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:50:07 by plashkar          #+#    #+#             */
-/*   Updated: 2023/09/29 11:38:02 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:11:32 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ typedef struct	s_data {
 	int		endian;
 }	t_data;
 
-
-
-
 typedef struct shape_info {
 	int			x;
 	int			y;
@@ -52,8 +49,8 @@ typedef struct shape_info {
 }	shape_info;
 
 typedef struct s_layout {
-	int	row;
-	int	col;
+	int	row_cnt;
+	int	col_cnt;
 	int	exit;
 	int	player;
 	int	enemy;
@@ -90,4 +87,6 @@ int	on_destroy(t_data *data);
 //keyboard and mouse management
 int	on_keypress(int keysymb, t_data *img);
 
-
+//struct initiators
+t_map_error	ft_memset_map_error();
+t_layout	ft_memset_layout();
