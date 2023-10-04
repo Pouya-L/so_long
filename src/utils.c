@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 16:36:55 by plashkar          #+#    #+#             */
-/*   Updated: 2023/09/27 17:48:24 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:59:30 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,5 @@ int	on_keypress(int keysymb, t_data *img)
 		on_destroy(img);
 	return (0);
 }
+
+

@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:50:07 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/03 18:24:24 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:01:56 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_layout {
 	int	n_player;
 	int	n_enemy;
 	int	n_collect;
+	int	inv_char;
 	char	**map;
 }	t_layout;
 
@@ -65,7 +66,7 @@ typedef struct s_map_error {
 	int	inv_collect;
 	int	inv_shape;
 	int	inv_border;
-	int	inv_char;
+
 }	t_map_error;
 
 //shapes and colors
@@ -95,7 +96,10 @@ t_layout	ft_memset_layout();
 
 void	ft_map_validations(t_layout *layout);
 
+int ft_top_and_bottom_border(t_layout *layout);
+
 int	ft_first_and_last(t_layout *layout);
+int	ft_borders(t_layout *layout);
 
 void	ft_map_allocate(t_layout *layout, char **argv);
 
@@ -105,7 +109,7 @@ void	ft_check_params(int argc, char **argv);
 
 int	error_msg_and_free(char *msg, char **map);
 
-
+void	print_map_details(t_layout *layout);
 
 
 
