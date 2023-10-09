@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:12:02 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/03 15:54:43 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:32:04 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,3 +179,100 @@ t_layout ft_memset_layout(void)
 // 	char *str2 = "Hell";
 // 	ft_printf("%s", ft_strjoin(str1, str2));
 // }
+
+
+#include <stdio.h>
+#include <stdbool.h>
+
+typedef struct s_layout {
+    size_t n_row;
+    size_t n_col;
+    int n_exit;
+    int exit_x;
+    int exit_y;
+    int n_player;
+    int player_x;
+    int player_y;
+    int n_enemy;
+    int n_collect;
+    int inv_char;
+    char **map;
+} t_layout;
+
+bool visited[ROWS][COLS] = {false};
+
+// Function to check if a cell is valid
+bool isValid(int row, int col, t_layout *layout) {
+    return (row >= 0 && row < layout->n_row && col >= 0 && col < layout->n_col);
+}
+
+// Function to check if there is a path from 'start' to 'end'
+bool doesPathExist(int startRow, int startCol, int exitRow, int exitCol, t_layout *layout) {
+    // If we reach the exit, return true
+    if (startRow == exitRow && startCol == exitCol) {
+        return true;
+    }
+
+    visited[startRow][startCol] = true;
+
+    // Define possible moves (up, down, left, right)
+    int rowMoves[] = {-1, 1, 0, 0};
+    int colMoves[] = {0, 0, -1, 1};
+
+    for (int i = 0; i < 4; i++) {
+        int newRow = startRow + rowMoves[i];
+        int newCol = startCol + colMoves[i];
+
+        if (isValid(newRow, newCol, layout) && !visited[newRow][newCol] && layout->map[newRow][newCol] != '1') {
+            if (doesPathExist(newRow, newCol, exitRow, exitCol, layout)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+// Function to check if all collectibles can be collected
+bool canCollectAllCollectibles(t_layout *layout) {
+    int collectiblesLeft = layout->n_collect;
+
+    // Find the starting position
+    int startRow = layout->player_x;aaslayout->player_y;
+
+    // Iterate through the maze and check if there's a path from player to each collectible
+    for (int i = 0; i < layout->n_row; i++) {
+        for (int j = 0; j < layout->n_col; j++) {
+            if (layout->map[i][j] == 'C') {
+                visited[ROWS][COLS] = {false}; // Reset visited array for each collectible check
+                if (doesPathExist(startRow, startCol, i, j, layout)) {
+                    collectiblesLeft--;
+                }
+            }
+        }
+    }
+
+    return collectiblesLeft == 0;
+}
+
+int main() {
+    t_layout layout;
+
+    // Populate layout with your map and other information
+
+    // Check if there is a path from start to exit
+    if (doesPathExist(layout.player_x, layout.player_y, layout.exit_x, layout.exit_y, &layout)) {
+        printf("Path to the exit exists!\n");
+    } else {
+        printf("No valid path to the exit.\n");
+    }
+
+    // Check if all collectibles can be collected
+    if (canCollectAllCollectibles(&layout)) {
+        printf("All collectibles can be collected!\n");
+    } else {
+        printf("Not all collectibles can be collected.\n");
+    }
+
+    return 0;
+}

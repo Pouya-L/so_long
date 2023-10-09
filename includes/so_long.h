@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:50:07 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/04 15:01:56 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:17:44 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <X11/X.h>
 #include <X11/keysym.h>
 #include <fcntl.h>
+#include <stdbool.h>
 
 //Color codes for ft_printf
 # define DEFAULT "\033[0m"
@@ -53,21 +54,18 @@ typedef struct s_layout {
 	size_t	n_row;
 	size_t	n_col;
 	int	n_exit;
+	size_t	exit_x;
+	size_t	exit_y;
+	int	exit_path_check;
 	int	n_player;
+	size_t	player_x;
+	size_t	player_y;
 	int	n_enemy;
 	int	n_collect;
+	int	collect_path_check;
 	int	inv_char;
 	char	**map;
 }	t_layout;
-
-typedef struct s_map_error {
-	int	inv_exit;
-	int	inv_player;
-	int	inv_collect;
-	int	inv_shape;
-	int	inv_border;
-
-}	t_map_error;
 
 //shapes and colors
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -91,17 +89,15 @@ int	on_destroy(t_data *data);
 int	on_keypress(int keysymb, t_data *img);
 
 //struct initiators
-t_map_error	ft_memset_map_error();
 t_layout	ft_memset_layout();
 
 void	ft_map_validations(t_layout *layout);
 
-int ft_top_and_bottom_border(t_layout *layout);
-
-int	ft_first_and_last(t_layout *layout);
-int	ft_borders(t_layout *layout);
+int	ft_top_and_bottom_border(t_layout *layout);
+int	left_and_right_border(t_layout *layout);
 
 void	ft_map_allocate(t_layout *layout, char **argv);
+void	ft_layout_struct_updater(t_layout *layout);
 
 int	ft_count_lines(char **argv);
 
@@ -111,8 +107,12 @@ int	error_msg_and_free(char *msg, char **map);
 
 void	print_map_details(t_layout *layout);
 
+bool	ft_path_exists(size_t start_row, size_t start_col, t_layout *layout);
 
+void	ft_player_and_exit_coordinates(t_layout *layout);
 
+int	map_copy_and_check(t_layout *layout);
 
+void	ft_check_path(t_layout *layout, size_t x, size_t y, char **map_copy);
 
-
+void	free_2D_array(char **map_copy);

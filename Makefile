@@ -6,7 +6,7 @@
 #    By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 13:37:11 by plashkar          #+#    #+#              #
-#    Updated: 2023/09/29 10:03:21 by plashkar         ###   ########.fr        #
+#    Updated: 2023/10/09 17:32:29 by plashkar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,10 @@ SO_LONG_LIB = so_long.a
 SRC = \
 	src/test.c \
 	src/utils.c \
+	src/map_checks.c \
+	src/path_checks.c \
+	src/map.c \
+
 
 
 # BONUS = \
