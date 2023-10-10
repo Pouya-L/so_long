@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+         #
+#    By: plashkar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 13:37:11 by plashkar          #+#    #+#              #
-#    Updated: 2023/10/10 18:39:27 by plashkar         ###   ########.fr        #
+#    Updated: 2023/10/10 20:55:11 by plashkar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,9 @@ SRC = \
 	src/map_checks.c \
 	src/path_checks.c \
 	src/map.c \
+	src/move.c \
+	src/game.c \
+	src/image.c \
 
 
 

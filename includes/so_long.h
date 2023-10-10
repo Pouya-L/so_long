@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:50:07 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/10 18:27:45 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/11 00:41:13 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define WHITE "\033[0;37m"
 
 # define CS 140
+# define MAX_ENEMIES 10
 
 enum {
 	KEY_W = 119,
@@ -69,6 +70,11 @@ typedef struct s_all_img {
 	t_img	*enemy;
 }	t_all_img;
 
+typedef struct s_enemy {
+	size_t		x;
+	size_t		y;
+}	t_enemy;
+
 typedef struct s_layout {
 	size_t		n_row;
 	size_t		n_col;
@@ -80,6 +86,7 @@ typedef struct s_layout {
 	size_t		player_x;
 	size_t		player_y;
 	int			n_enemy;
+	t_enemy		enemy;
 	int			n_collect;
 	int			collect_path_check;
 	int			inv_char;
@@ -116,7 +123,8 @@ typedef struct s_layout {
 // uint32_t	get_opposite_color(uint32_t color);
 
 //error checks and free functions
-int	on_destroy(t_layout *layout);
+int			on_destroy(t_layout *layout);
+void		on_destroy_2(t_layout *layout);
 int			error_msg_and_free(char *msg, char **map);
 void		free_2d_array(char **map_copy);
 
@@ -151,6 +159,10 @@ void	player_move_right(t_layout *lay);
 void	player_move_left(t_layout *lay);
 
 void	ft_put_move_number(t_layout *layout);
+
+t_enemy	*init_enemy(size_t i, size_t j);
+t_enemy *ft_spawn_enemies(t_layout *layout);
+void	ft_make_enemies(t_layout *layout);
 
 
 #endif
