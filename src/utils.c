@@ -6,27 +6,30 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 16:36:55 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/04 12:59:30 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:56:29 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	on_destroy(t_data *img)
+int	on_destroy(t_layout *layout)
 {
-	mlx_destroy_image(img->mlx, img->img);
-	mlx_destroy_window(img->mlx, img->mlx_win);
-	mlx_destroy_display(img->mlx);
-	free(img->mlx);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->background->img);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->player_up->img);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->player_down->img);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->player_right->img);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->player_left->img);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->collect->img);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->wall->img);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->exit->img);
+	// mlx_destroy_image(layout->mlx, layout->all_imgs->enemy->img);
+	mlx_destroy_window(layout->mlx, layout->mlx_win);
+	mlx_destroy_display(layout->mlx);
+	free_2d_array(layout->map);
+	free(layout->mlx);
 	exit(0);
 }
 
-int	on_keypress(int keysymb, t_data *img)
-{
-	ft_printf("Pressed key: %d\n", keysymb);
-	if (keysymb == 65307)
-		on_destroy(img);
-	return (0);
-}
+
 
 

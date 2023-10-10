@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   map_checks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 10:29:33 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/09 17:20:16 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/10 17:09:06 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_check_params(int argc, char **argv)
 {
 	int	fd;
+
 	if (argc != 2)
 		error_msg_and_free("Number of arguments not supported", NULL);
 	fd = open(argv[1], O_RDONLY);
@@ -33,7 +34,7 @@ void	ft_map_validations(t_layout *layout)
 		error_msg_and_free("Invalid number of Players", layout->map);
 	if (layout->n_exit != 1)
 		error_msg_and_free("Invalid number of Exits", layout->map);
-	if (layout->n_collect != 1)
+	if (layout->n_collect < 1)
 		error_msg_and_free("Invalid number of Collectibles", layout->map);
 	if (layout->inv_char == 1)
 		error_msg_and_free("Invalid chars present in the map", layout->map);
@@ -45,7 +46,7 @@ int	ft_top_and_bottom_border(t_layout *layout)
 {
 	size_t	i;
 	size_t	j;
-	int	check;
+	int		check;
 
 	i = 0;
 	j = 0;
@@ -71,7 +72,7 @@ int	left_and_right_border(t_layout *layout)
 {
 	size_t	i;
 	size_t	j;
-	int	check;
+	int		check;
 
 	i = 0;
 	j = 0;

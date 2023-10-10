@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:29:40 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/09 17:35:35 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/10 17:44:13 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	map_copy_and_check(t_layout *layout)
 {
-	char**	map_copy;
+	char	**map_copy;
 	size_t	i;
 
 	i = 0;
@@ -26,32 +26,32 @@ int	map_copy_and_check(t_layout *layout)
 		i++;
 	}
 	ft_check_path(layout, layout->player_x, layout->player_y, map_copy);
-	free_2D_array(map_copy);
+	free_2d_array(map_copy);
 	if (layout->collect_path_check == 0 && layout->exit_path_check == 1)
 		return (1);
 	else
 		return (0);
 }
 
-void	ft_check_path(t_layout *layout, size_t x, size_t y, char **map_copy)
+void	ft_check_path(t_layout *layout, size_t x, size_t y, char **map_cpy)
 {
-	if (map_copy[x][y] == 'V' || map_copy[x][y] == '1')
+	if (map_cpy[x][y] == 'V' || map_cpy[x][y] == '1')
 		return ;
-	else if (map_copy[x][y] == 'C')
+	else if (map_cpy[x][y] == 'C')
 		layout->collect_path_check--;
-	else if (map_copy[x][y] == 'E')
+	else if (map_cpy[x][y] == 'E')
 	{
 		layout->exit_path_check = 1;
 		return ;
 	}
-	map_copy[x][y] = 'V';
-	ft_check_path(layout, x + 1, y, map_copy);
-	ft_check_path(layout, x - 1, y, map_copy);
-	ft_check_path(layout, x, y + 1, map_copy);
-	ft_check_path(layout, x, y - 1, map_copy);
+	map_cpy[x][y] = 'V';
+	ft_check_path(layout, x + 1, y, map_cpy);
+	ft_check_path(layout, x - 1, y, map_cpy);
+	ft_check_path(layout, x, y + 1, map_cpy);
+	ft_check_path(layout, x, y - 1, map_cpy);
 }
 
-void	free_2D_array(char **map_copy)
+void	free_2d_array(char **map_copy)
 {
 	size_t	i;
 
@@ -83,13 +83,9 @@ int	error_msg_and_free(char *msg, char **map)
 		free(map);
 	}
 	map = NULL;
-	if (msg != NULL)
-	{
 	ft_printf("%sError\n%s%s\n", RED, msg, DEFAULT);
-	}
 	exit (0);
 }
-
 
 void	print_map_details(t_layout *layout)
 {
@@ -102,7 +98,7 @@ void	print_map_details(t_layout *layout)
 	ft_printf("Number of exits: %d\n", layout->n_exit);
 	ft_printf("Number of enemies: %d\n", layout->n_enemy);
 	ft_printf("Number of collectibles: %d\n", layout->n_collect);
-	ft_printf("The player is at (%d, %d) ,", layout->player_x, layout->player_y);
+	ft_printf("The player is at (%d, %d).", layout->player_x, layout->player_y);
 	ft_printf("The exit is at (%d, %d) \n", layout->exit_x, layout->exit_y);
 	ft_printf("The map is in this shape\n");
 	while (layout->map[i])

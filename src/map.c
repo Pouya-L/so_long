@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 10:13:22 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/09 14:39:09 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:38:03 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_map_allocate(t_layout *layout, char **argv)
 			error_msg_and_free("The map must be rectangular", layout->map);
 	}
 	ft_layout_struct_updater(layout);
+	layout->move_cnt = 1;
 	close(fd);
 }
 
@@ -113,4 +114,3 @@ void	ft_player_and_exit_coordinates(t_layout *layout)
 		i++;
 	}
 }
-
