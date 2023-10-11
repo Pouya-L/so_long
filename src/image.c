@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:53:04 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/10 20:54:01 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:58:51 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_all_img	*ft_make_all_images(t_layout *layout)
 	all_imgs->collect = ft_make_img_xpm("images/collect.xpm", layout);
 	all_imgs->wall = ft_make_img_xpm("images/wall.xpm", layout);
 	all_imgs->exit = ft_make_img_xpm("images/exit.xpm", layout);
-	//all_imgs->enemy = ft_make_img_xpm("images/enemy.xpm", layout);
+	all_imgs->enemy = ft_make_img_xpm("images/enemy.xpm", layout);
 	return (all_imgs);
 }
 

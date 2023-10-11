@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:50:07 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/11 00:41:13 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:19:12 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <math.h>
 # include <stdint.h>
 # include <stdlib.h>
+# include <time.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -75,6 +76,11 @@ typedef struct s_enemy {
 	size_t		y;
 }	t_enemy;
 
+// typedef struct s_e_list {
+// 	t_enemy			enemy;
+// 	struct s_e_list	*next;
+// }	t_e_list;
+
 typedef struct s_layout {
 	size_t		n_row;
 	size_t		n_col;
@@ -86,7 +92,7 @@ typedef struct s_layout {
 	size_t		player_x;
 	size_t		player_y;
 	int			n_enemy;
-	t_enemy		enemy;
+	t_enemy		*enemies[MAX_ENEMIES];
 	int			n_collect;
 	int			collect_path_check;
 	int			inv_char;
@@ -164,5 +170,8 @@ t_enemy	*init_enemy(size_t i, size_t j);
 t_enemy *ft_spawn_enemies(t_layout *layout);
 void	ft_make_enemies(t_layout *layout);
 
+
+void	ft_hit_enemy_check(t_layout *layout);
+int	ft_enemy_move(t_layout *layout);
 
 #endif

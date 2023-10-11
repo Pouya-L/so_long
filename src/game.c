@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:47:43 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/11 00:36:12 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:55:54 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,27 @@ int	game_init(t_layout *layout)
 	return (0);
 }
 
-t_enemy *ft_spawn_enemies(t_layout *layout)
+void	ft_randomize_i_and_j(t_layout *layout, size_t *i, size_t *j)
+{
+	*i = rand() % (layout->n_row - 1);
+	*j = rand() % (layout->n_col - 1);
+}
+
+t_enemy	*ft_spawn_enemies(t_layout *layout)
 {
 
 	size_t	i;
 	size_t	j;
 
-	i = 0;
-	while (layout->map[i])
+	ft_randomize_i_and_j(layout, &i, &j);
+	while (layout->map[i] && i < layout->n_row - 1 && j < layout->n_col - 1)
 	{
-		j = 0;
 		while (layout->map[i][j])
 		{
 			if (layout->map[i][j] == '0')
 			{
-				mlx_put_image_to_window(layout->mlx, layout->mlx_win, layout->all_imgs->wall->img, j * CS, i * CS);
-				return(init_enemy(i, j));
+					mlx_put_image_to_window(layout->mlx, layout->mlx_win, layout->all_imgs->enemy->img, j * CS, i * CS);
+					return (init_enemy(i, j));
 			}
 			j++;
 		}
@@ -56,7 +61,7 @@ t_enemy	*init_enemy(size_t i, size_t j)
 {
 	t_enemy	*enemy;
 
-	enemy = malloc (sizeof(t_enemy));
+	enemy = ft_calloc (1, sizeof(t_enemy));
 	if (!enemy)
 		return (NULL);
 	enemy->x = i;
@@ -67,12 +72,64 @@ t_enemy	*init_enemy(size_t i, size_t j)
 void	ft_make_enemies(t_layout *layout)
 {
 	int	i;
-	t_enemy	*enemy_list[MAX_ENEMIES];
+	int	j;
+	t_enemy	*new_enemy;
 
 	i = rand() % 10;
-	while (i > 0 && layout->n_enemy < MAX_ENEMIES)
+	j = 0;
+	while (i > 0 && j < MAX_ENEMIES)
 	{
-		enemy_list[layout->n_enemy++] = ft_spawn_enemies(layout);
+		new_enemy = ft_spawn_enemies(layout);
+		if (new_enemy)
+		{
+			layout->enemies[j] = new_enemy;
+			j++;
+		}
 		i--;
 	}
+	layout->n_enemy = j;
+}
+
+void	ft_hit_enemy_check(t_layout *layout)
+{
+	int	i;
+
+	i = 0;
+	while(i < layout->n_enemy)
+	{
+		if (layout->player_x == layout->enemies[i]->x && layout->player_y == layout->enemies[i]->y)
+			on_destroy(layout);
+		i++;
+	}
+}
+
+int	ft_enemy_move(t_layout *layout)
+{
+	int	move_x;
+	int	move_y;
+	int new_x;
+	int new_y;
+	int	i;
+
+	i = 0;
+	while (layout->enemies[i])
+	{
+		move_x = (rand() % 3 - 1);
+		move_y = (rand() % 3 - 1);
+		if (move_x != 0 && move_y != 0)
+			move_x = 0;
+		new_x = layout->enemies[i]->x + move_x;
+		new_y = layout->enemies[i]->y + move_y;
+		if (layout->map[new_x][new_y] == '0')
+		{
+			mlx_put_image_to_window(layout->mlx, layout->mlx_win, \
+		layout->all_imgs->background->img, layout->enemies[i]->y * CS, layout->enemies[i]->x * CS);
+			mlx_put_image_to_window(layout->mlx, layout->mlx_win, layout->all_imgs->enemy->img, new_y * CS, new_x * CS);
+			layout->enemies[i]->y = new_y;
+			layout->enemies[i]->x = new_x;
+		}
+
+		i++;
+	}
+	return (0);
 }
