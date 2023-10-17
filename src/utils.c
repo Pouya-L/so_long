@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 16:36:55 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/11 17:53:46 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/17 02:00:02 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int	on_destroy(t_layout *layout)
 	i = 0;
 	mlx_destroy_image(layout->mlx, layout->all_imgs->background->img);
 	free(layout->all_imgs->background);
-	mlx_destroy_image(layout->mlx, layout->all_imgs->player_up->img);
-	free(layout->all_imgs->player_up);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->player_up_0->img);
+	free(layout->all_imgs->player_up_0);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->player_up_1->img);
+	free(layout->all_imgs->player_up_1);
 	mlx_destroy_image(layout->mlx, layout->all_imgs->player_down->img);
 	free(layout->all_imgs->player_down);
 	mlx_destroy_image(layout->mlx, layout->all_imgs->player_right->img);
@@ -39,9 +41,7 @@ int	on_destroy(t_layout *layout)
 }
 
 void	on_destroy_2(t_layout *layout)
-{	int	i;
-
-	i = 0;
+{
 	mlx_destroy_image(layout->mlx, layout->all_imgs->collect->img);
 	free(layout->all_imgs->collect);
 	mlx_destroy_image(layout->mlx, layout->all_imgs->wall->img);

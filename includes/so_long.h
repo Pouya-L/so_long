@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:50:07 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/11 17:19:12 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/17 01:59:34 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define CYAN "\033[0;36m"
 # define WHITE "\033[0;37m"
 
-# define CS 140
+# define CS 100
 # define MAX_ENEMIES 10
 
 enum {
@@ -61,7 +61,8 @@ typedef struct s_image {
 
 typedef struct s_all_img {
 	t_img	*background;
-	t_img	*player_up;
+	t_img	*player_up_0;
+	t_img	*player_up_1;
 	t_img	*player_down;
 	t_img	*player_right;
 	t_img	*player_left;
@@ -160,6 +161,11 @@ t_all_img	*ft_make_all_images(t_layout *layout);
 t_img		*ft_make_img_xpm(char *path, t_layout *layout);
 
 void	player_move_up(t_layout *lay);
+
+void	player_move_up_v2(t_layout *lay);
+void	player_move_up_anim(t_layout *lay);
+
+
 void	player_move_down(t_layout *lay);
 void	player_move_right(t_layout *lay);
 void	player_move_left(t_layout *lay);

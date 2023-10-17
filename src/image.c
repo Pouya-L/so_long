@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:53:04 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/11 09:58:51 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/17 01:58:35 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,15 @@ t_all_img	*ft_make_all_images(t_layout *layout)
 	if (!all_imgs)
 		return (0);
 	all_imgs->background = ft_make_img_xpm("images/background.xpm", layout);
-	all_imgs->player_up = ft_make_img_xpm("images/player_up.xpm", layout);
-	all_imgs->player_down = ft_make_img_xpm("images/player_down.xpm", layout);
-	all_imgs->player_right = ft_make_img_xpm("images/player_right.xpm", layout);
-	all_imgs->player_left = ft_make_img_xpm("images/player_left.xpm", layout);
+	all_imgs->player_up_0 = ft_make_img_xpm("images/Player_run_up_0.xpm", layout);
+	all_imgs->player_up_1 = ft_make_img_xpm("images/Player_run_up_1.xpm", layout);
+	all_imgs->player_down = ft_make_img_xpm("images/Player_run_down.xpm", layout);
+	all_imgs->player_right = ft_make_img_xpm("images/Player_run_right_0.xpm", layout);
+	all_imgs->player_left = ft_make_img_xpm("images/Player_run_left_0.xpm", layout);
 	all_imgs->collect = ft_make_img_xpm("images/collect.xpm", layout);
 	all_imgs->wall = ft_make_img_xpm("images/wall.xpm", layout);
-	all_imgs->exit = ft_make_img_xpm("images/exit.xpm", layout);
-	all_imgs->enemy = ft_make_img_xpm("images/enemy.xpm", layout);
+	all_imgs->exit = ft_make_img_xpm("images/Exit.xpm", layout);
+	all_imgs->enemy = ft_make_img_xpm("images/zombie_walk_right_0.xpm", layout);
 	return (all_imgs);
 }
 

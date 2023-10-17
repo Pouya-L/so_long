@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:47:43 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/11 17:55:54 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:07:55 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ int	ft_enemy_move(t_layout *layout)
 			layout->enemies[i]->y = new_y;
 			layout->enemies[i]->x = new_x;
 		}
-
 		i++;
 	}
 	return (0);
