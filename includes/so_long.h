@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:50:07 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/17 01:59:34 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/17 20:07:43 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,37 @@ typedef struct s_image {
 
 typedef struct s_all_img {
 	t_img	*background;
-	t_img	*player_up_0;
-	t_img	*player_up_1;
-	t_img	*player_down;
-	t_img	*player_right;
-	t_img	*player_left;
+	t_img	*p_up_0;
+	t_img	*p_up_1;
+	t_img	*p_down_0;
+	t_img	*p_down_1;
+	t_img	*p_right;
+	t_img	*p_right_1;
+	t_img	*p_right_2;
+	t_img	*p_left;
+	t_img	*p_left_1;
+	t_img	*p_left_2;
 	t_img	*collect;
 	t_img	*wall;
 	t_img	*exit;
-	t_img	*enemy;
+	t_img	*e_left;
+	t_img	*e_up;
+	t_img	*e_down;
+	t_img	*e_left_1;
+	t_img	*e_left_2;
+	t_img	*e_left_3;
+	t_img	*e_right_0;
+	t_img	*e_right_1;
+	t_img	*e_right_2;
+	t_img	*e_right_3;
+	t_img	*death_0;
+	t_img	*death_1;
+	t_img	*death_2;
+	t_img	*death_3;
+	t_img	*death_4;
+	t_img	*death_5;
+	t_img	*death_6;
+	t_img	*death_7;
 }	t_all_img;
 
 typedef struct s_enemy {
@@ -131,6 +153,7 @@ typedef struct s_layout {
 
 //error checks and free functions
 int			on_destroy(t_layout *layout);
+void		on_destroy_1(t_layout *layout);
 void		on_destroy_2(t_layout *layout);
 int			error_msg_and_free(char *msg, char **map);
 void		free_2d_array(char **map_copy);
@@ -158,26 +181,40 @@ int	game_init(t_layout *layout);
 void		ft_initial_map_to_screen(t_layout *layout);
 void		ft_map_characters(t_layout *layout, t_all_img *all_imgs ,int i, int j);
 t_all_img	*ft_make_all_images(t_layout *layout);
+void	ft_make_all_images_1(t_layout *layout, t_all_img *all_imgs);
+
 t_img		*ft_make_img_xpm(char *path, t_layout *layout);
 
 void	player_move_up(t_layout *lay);
 
-void	player_move_up_v2(t_layout *lay);
-void	player_move_up_anim(t_layout *lay);
+void		player_move_up_v2(t_layout *lay);
+void		player_move_up_anim(t_layout *lay);
+void		ft_mlx_sync(t_layout *layout, int time);
 
 
 void	player_move_down(t_layout *lay);
+void	player_move_down_anim(t_layout *lay);
 void	player_move_right(t_layout *lay);
+void	player_move_right_anim(t_layout *lay);
 void	player_move_left(t_layout *lay);
+void	player_move_left_anim(t_layout *lay);
 
 void	ft_put_move_number(t_layout *layout);
 
 t_enemy	*init_enemy(size_t i, size_t j);
 t_enemy *ft_spawn_enemies(t_layout *layout);
+t_enemy	*ft_spawn_enemies_check(t_layout *lay, size_t i, size_t j);
 void	ft_make_enemies(t_layout *layout);
 
 
 void	ft_hit_enemy_check(t_layout *layout);
-int	ft_enemy_move(t_layout *layout);
+int		ft_enemy_move_gen(t_layout *layout);
+void	ft_enemy_move(t_layout *lay, t_enemy *enemy, size_t new_x, size_t new_y);
+void	enemy_move_up_anim(t_layout *lay, t_enemy *enemy);
+void	enemy_move_down_anim(t_layout *lay, t_enemy *enemy);
+void	enemy_move_right_anim(t_layout *lay, t_enemy *enemy);
+void	enemy_move_left_anim(t_layout *lay, t_enemy *enemy);
+
+void ft_player_death(t_layout *lay);
 
 #endif
