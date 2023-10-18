@@ -1,44 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   player_animations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:38:20 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/17 18:45:01 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:15:46 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-void	player_move_up(t_layout *lay)
-{
-	char	*player;
-	char	*next;
-
-	player = &lay->map[lay->player_x][lay->player_y];
-	next = &lay->map[lay->player_x - 1][lay->player_y];
-	if (lay->map[lay->player_x - 1][lay->player_y] == 'E' && \
-	lay->n_collect == 0)
-		on_destroy(lay);
-	else if (lay->map[lay->player_x - 1][lay->player_y] == 'C')
-		lay->n_collect--;
-	if (*next != 'E' && *next != '1')
-	{
-		if (*next == 'Z')
-			ft_player_death(lay);
-		*player = '0';
-		*next = 'P';
-		player_move_up_anim(lay);
-		ft_put_move_number(lay);
-	}
-	else
-		mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
-		lay->all_imgs->p_up_0->img, lay->player_y * CS, lay->player_x * CS);
-}
-
-
 
 void	player_move_up_anim(t_layout *lay)
 {
@@ -65,39 +37,6 @@ void	player_move_up_anim(t_layout *lay)
 	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
 	lay->all_imgs->p_up_1->img, lay->player_y * CS, \
 	((double)lay->player_x - 1) * CS);
-}
-
-void	ft_mlx_sync(t_layout *layout, int time)
-{
-	mlx_do_sync(layout->mlx);
-	usleep(time);
-}
-
-
-void	player_move_down(t_layout *lay)
-{
-	char	*player;
-	char	*next;
-	player = &lay->map[lay->player_x][lay->player_y];
-	next = &lay->map[lay->player_x + 1][lay->player_y];
-	if (lay->map[lay->player_x + 1][lay->player_y] == 'E' && \
-	lay->n_collect == 0)
-		on_destroy(lay);
-	else if (lay->map[lay->player_x + 1][lay->player_y] == 'C')
-		lay->n_collect--;
-	if (*next != '1' && *next != 'E')
-	{
-		if (*next == 'Z')
-			ft_player_death(lay);
-		*player = '0';
-		*next = 'P';
-		player_move_down_anim(lay);
-		ft_put_move_number(lay);
-	}
-	else
-		mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
-		lay->all_imgs->p_down_0->img, lay->player_y * CS, \
-		lay->player_x * CS);
 }
 
 void	player_move_down_anim(t_layout *lay)
@@ -127,32 +66,6 @@ void	player_move_down_anim(t_layout *lay)
 	((double)lay->player_x + 1) * CS);
 }
 
-void	player_move_right(t_layout *lay)
-{
-	char	*player;
-	char	*next;
-	player = &lay->map[lay->player_x][lay->player_y];
-	next = &lay->map[lay->player_x][lay->player_y + 1];
-	if (lay->map[lay->player_x][lay->player_y + 1] == 'E' && \
-	lay->n_collect == 0)
-		on_destroy(lay);
-	else if (lay->map[lay->player_x][lay->player_y + 1] == 'C')
-		lay->n_collect--;
-	if (*next != 'E' && *next != '1')
-	{
-		if (*next == 'Z')
-			ft_player_death(lay);
-		*player = '0';
-		*next = 'P';
-		player_move_right_anim(lay);
-		ft_put_move_number(lay);
-	}
-	else
-		mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
-		lay->all_imgs->p_right->img, lay->player_y * CS, \
-		lay->player_x * CS);
-}
-
 void	player_move_right_anim(t_layout *lay)
 {
 	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
@@ -180,33 +93,6 @@ void	player_move_right_anim(t_layout *lay)
 	lay->player_x * CS);
 }
 
-void	player_move_left(t_layout *lay)
-{
-	char	*player;
-	char	*next;
-
-	player = &lay->map[lay->player_x][lay->player_y];
-	next = &lay->map[lay->player_x][lay->player_y - 1];
-	if (lay->map[lay->player_x][lay->player_y - 1] == 'E' && \
-	lay->n_collect == 0)
-		on_destroy(lay);
-	else if (lay->map[lay->player_x][lay->player_y - 1] == 'C')
-		lay->n_collect--;
-	if (*next != 'E' && *next != '1')
-	{
-		if (*next == 'Z')
-			ft_player_death(lay);
-		*player = '0';
-		*next = 'P';
-		player_move_left_anim(lay);
-		ft_put_move_number(lay);
-	}
-	else
-		mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
-		lay->all_imgs->p_left->img, lay->player_y * CS, \
-		lay->player_x * CS);
-}
-
 void	player_move_left_anim(t_layout *lay)
 {
 	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
@@ -232,4 +118,60 @@ void	player_move_left_anim(t_layout *lay)
 	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
 	lay->all_imgs->p_left->img, (((double)lay->player_y - 1) * CS), \
 	lay->player_x * CS);
+}
+
+void	ft_player_death(t_layout *lay)
+{
+	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
+	lay->all_imgs->death_0->img, lay->player_y * CS, lay->player_x * CS);
+	ft_mlx_sync(lay, 100000);
+	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
+	lay->all_imgs->death_1->img, lay->player_y * CS, lay->player_x * CS);
+	ft_mlx_sync(lay, 100000);
+	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
+	lay->all_imgs->death_2->img, lay->player_y * CS, lay->player_x * CS);
+	ft_mlx_sync(lay, 100000);
+	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
+	lay->all_imgs->death_3->img, lay->player_y * CS, lay->player_x * CS);
+	ft_mlx_sync(lay, 100000);
+	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
+	lay->all_imgs->death_4->img, lay->player_y * CS, lay->player_x * CS);
+	ft_mlx_sync(lay, 100000);
+	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
+	lay->all_imgs->death_5->img, lay->player_y * CS, lay->player_x * CS);
+	ft_mlx_sync(lay, 100000);
+	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
+	lay->all_imgs->death_6->img, lay->player_y * CS, lay->player_x * CS);
+	ft_mlx_sync(lay, 100000);
+	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
+	lay->all_imgs->death_7->img, lay->player_y * CS, lay->player_x * CS);
+	ft_mlx_sync(lay, 100000);
+	ft_lose_msg(lay);
+}
+
+void	ft_lose_msg(t_layout *layout)
+{
+	layout->end_mlx = mlx_init();
+	layout->end_win = mlx_new_window(layout->mlx, 1024, \
+	576, "END");
+	mlx_put_image_to_window(layout->mlx, layout->end_win, \
+	layout->all_imgs->you_lose->img, 0, 0);
+	ft_mlx_sync_end(layout, 100000);
+	mlx_destroy_window(layout->end_mlx, layout->end_win);
+	mlx_destroy_display(layout->end_mlx);
+	free(layout->end_mlx);
+	on_destroy(layout);
+}
+
+void	ft_win_msg(t_layout *layout)
+{
+	layout->end_win = mlx_new_window(layout->mlx, 612, \
+	612, "END");
+	mlx_put_image_to_window(layout->mlx, layout->end_win, \
+	layout->all_imgs->you_win->img, 0, 0);
+	ft_mlx_sync_end(layout, 100000);
+	mlx_destroy_window(layout->end_mlx, layout->end_win);
+	mlx_destroy_display(layout->end_mlx);
+	free(layout->end_mlx);
+	on_destroy(layout);
 }

@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 16:36:55 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/17 19:38:51 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:13:46 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ void	on_destroy_2(t_layout *layout)
 	mlx_destroy_image(layout->mlx, layout->all_imgs->e_right_3->img);
 	free(layout->all_imgs->e_right_3);
 }
+
 int	ft_key_press(int keysymb, t_layout *layout)
 {
-
 	ft_player_and_exit_coordinates(layout);
 		ft_printf("Pressed key: %d\n", keysymb);
 	if (keysymb == K_ESC)
@@ -93,9 +93,19 @@ int	ft_key_press(int keysymb, t_layout *layout)
 		player_move_left(layout);
 	if (keysymb == KEY_S || keysymb == DIRK_DOWN)
 		player_move_down(layout);
-	if (keysymb == KEY_D ||keysymb == DIRK_RIGHT)
+	if (keysymb == KEY_D || keysymb == DIRK_RIGHT)
 		player_move_right(layout);
 	return (0);
 }
 
+void	ft_mlx_sync(t_layout *layout, int time)
+{
+	mlx_do_sync(layout->mlx);
+	usleep(time);
+}
 
+void	ft_mlx_sync_end(t_layout *layout, int time)
+{
+	mlx_do_sync(layout->end_mlx);
+	usleep(time);
+}

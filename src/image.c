@@ -6,47 +6,28 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:53:04 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/17 18:42:47 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/18 17:08:43 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	ft_initial_map_to_screen(t_layout *layout)
+void	ft_map_characters(t_layout *lay, t_all_img *all_imgs, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	layout->all_imgs = ft_make_all_images(layout);
-	while (layout->map[i])
-	{
-		j = 0;
-		while (layout->map[i][j])
-		{
-			ft_map_characters(layout, layout->all_imgs, i, j);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	ft_map_characters(t_layout *layout, t_all_img *all_imgs ,int i, int j)
-{
-	if (layout->map[i][j] == '1')
-		mlx_put_image_to_window(layout->mlx, layout->mlx_win, \
+	if (lay->map[i][j] == '1')
+		mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
 		all_imgs->wall->img, j * CS, i * CS);
-	else if (layout->map[i][j] == '0')
-		mlx_put_image_to_window(layout->mlx, layout->mlx_win, \
+	else if (lay->map[i][j] == '0')
+		mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
 		all_imgs->background->img, j * CS, i * CS);
-	else if (layout->map[i][j] == 'P')
-		mlx_put_image_to_window(layout->mlx, layout->mlx_win, \
+	else if (lay->map[i][j] == 'P')
+		mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
 		all_imgs->p_right->img, j * CS, i * CS);
-	else if (layout->map[i][j] == 'E')
-		mlx_put_image_to_window(layout->mlx, layout->mlx_win, \
+	else if (lay->map[i][j] == 'E')
+		mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
 		all_imgs->exit->img, j * CS, i * CS);
-	else if (layout->map[i][j] == 'C')
-		mlx_put_image_to_window(layout->mlx, layout->mlx_win, \
+	else if (lay->map[i][j] == 'C')
+		mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
 		all_imgs->collect->img, j * CS, i * CS);
 }
 
@@ -96,6 +77,8 @@ void	ft_make_all_images_1(t_layout *layout, t_all_img *all_imgs)
 	all_imgs->death_5 = ft_make_img_xpm("images/death_5.xpm", layout);
 	all_imgs->death_6 = ft_make_img_xpm("images/death_6.xpm", layout);
 	all_imgs->death_7 = ft_make_img_xpm("images/death_7.xpm", layout);
+	all_imgs->you_lose = ft_make_img_xpm("images/lose.xpm", layout);
+	all_imgs->you_win = ft_make_img_xpm("images/win.xpm", layout);
 }
 
 //DO NOT FORGET TO FREE < STATUS NOT FREED >
@@ -111,8 +94,9 @@ t_img	*ft_make_img_xpm(char *path, t_layout *layout)
 	image->img = mlx_xpm_file_to_image(layout->mlx, path, &width, &height);
 	image->addr = mlx_get_data_addr(image->img, \
 	&(image->bits_per_pixel), &(image->line_length), &(image->endian));
-	return(image);
+	return (image);
 }
+
 void	ft_put_move_number(t_layout *layout)
 {
 	char	*moves;
