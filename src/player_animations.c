@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:38:20 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/18 19:15:46 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:28:24 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,11 +152,11 @@ void	ft_player_death(t_layout *lay)
 void	ft_lose_msg(t_layout *layout)
 {
 	layout->end_mlx = mlx_init();
-	layout->end_win = mlx_new_window(layout->mlx, 1024, \
+	layout->end_win = mlx_new_window(layout->end_mlx, 1024, \
 	576, "END");
-	mlx_put_image_to_window(layout->mlx, layout->end_win, \
+	mlx_put_image_to_window(layout->end_mlx, layout->end_win, \
 	layout->all_imgs->you_lose->img, 0, 0);
-	ft_mlx_sync_end(layout, 100000);
+	ft_mlx_sync_end(layout, 1000000);
 	mlx_destroy_window(layout->end_mlx, layout->end_win);
 	mlx_destroy_display(layout->end_mlx);
 	free(layout->end_mlx);
@@ -167,7 +167,7 @@ void	ft_win_msg(t_layout *layout)
 {
 	layout->end_win = mlx_new_window(layout->mlx, 612, \
 	612, "END");
-	mlx_put_image_to_window(layout->mlx, layout->end_win, \
+	mlx_put_image_to_window(layout->end_mlx, layout->end_win, \
 	layout->all_imgs->you_win->img, 0, 0);
 	ft_mlx_sync_end(layout, 100000);
 	mlx_destroy_window(layout->end_mlx, layout->end_win);
