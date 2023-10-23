@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+         #
+#    By: plashkar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 17:00:19 by plashkar          #+#    #+#              #
-#    Updated: 2023/10/03 10:52:50 by plashkar         ###   ########.fr        #
+#    Updated: 2023/10/20 03:09:50 by plashkar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 SRC = \
 	ft_atoi.c ft_isascii.c ft_memchr.c ft_putchar_fd.c ft_strchr.c ft_strlcpy.c \
 	ft_strrchr.c ft_bzero.c ft_isdigit.c ft_memcmp.c ft_putendl_fd.c \

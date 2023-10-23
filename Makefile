@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+         #
+#    By: plashkar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 13:37:11 by plashkar          #+#    #+#              #
-#    Updated: 2023/10/18 12:04:56 by plashkar         ###   ########.fr        #
+#    Updated: 2023/10/19 21:30:26 by plashkar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,13 @@ SRC = \
 	src/path_checks.c \
 	src/map.c \
 	src/player_move.c \
+	src/player_attack.c \
 	src/player_animations.c \
 	src/enemy_animations.c \
 	src/enemy.c \
 	src/game.c \
 	src/image.c \
+	src/game_over.c \
 
 OBJ = $(SRC:.c=.o)
 

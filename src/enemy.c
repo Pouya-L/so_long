@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:47:09 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/18 12:21:14 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/19 23:04:18 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,58 +67,75 @@ t_enemy	*init_enemy(size_t i, size_t j)
 		return (NULL);
 	enemy->x = i;
 	enemy->y = j;
+	enemy->is_dead = 0;
 	return (enemy);
 }
 
-int	ft_enemy_move_gen(t_layout *layout)
+int	ft_enemy_move_gen(t_layout *l)
 {
-	int		move_x;
-	int		move_y;
-	size_t	new_x;
-	size_t	new_y;
+	int		mv_x;
+	int		mv_y;
 	int		i;
 
 	i = 0;
-	while (layout->enemies[i])
+	while (l->enemies[i])
 	{
-		move_x = (rand() % 3 - 1);
-		move_y = (rand() % 3 - 1);
-		if (move_x != 0 && move_y != 0)
-			move_x = 0;
-		new_x = layout->enemies[i]->x + move_x;
-		new_y = layout->enemies[i]->y + move_y;
-		if (layout->map[new_x][new_y] == '0')
+		if (!l->enemies[i]->is_dead)
 		{
-			layout->map[layout->enemies[i]->x][layout->enemies[i]->y] = '0';
-			layout->map[new_x][new_y] = 'Z';
-			ft_enemy_move(layout, layout->enemies[i], new_x, new_y);
+			mv_x = (rand() % 3 - 1);
+			mv_y = (rand() % 3 - 1);
+			if (mv_x != 0 && mv_y != 0)
+				mv_x = 0;
+			if (l->map[l->enemies[i]->x + mv_x][l->enemies[i]->y + mv_y] == '0')
+			{
+				l->map[l->enemies[i]->x][l->enemies[i]->y] = '0';
+				l->map[l->enemies[i]->x + mv_x][l->enemies[i]->y + mv_y] = 'Z';
+				ft_enemy_move(l, l->enemies[i], l->enemies[i]->x + mv_x, \
+				l->enemies[i]->y + mv_y);
+			}
 		}
 		i++;
 	}
-	ft_mlx_sync(layout, 100);
+	ft_mlx_sync(l, 100);
 	return (0);
 }
 
 void	ft_enemy_move(t_layout *lay, t_enemy *enemy, size_t new_x, size_t new_y)
 {
-	int	i;
-
-	i = 0;
-	while (lay->enemies[i])
-	{
-		if (lay->enemies[i]->x != new_x && lay->enemies[i]->y != new_y)
-		{
-			if (new_x == enemy->x - 1)
-				enemy_move_up_anim(lay, enemy);
-			if (new_x == enemy->x + 1)
-				enemy_move_down_anim(lay, enemy);
-			if (new_y == enemy->y - 1)
-				enemy_move_left_anim(lay, enemy);
-			if (new_y == enemy->y + 1)
-				enemy_move_right_anim(lay, enemy);
-			enemy->y = new_y;
-			enemy->x = new_x;
-		}
-		i++;
-	}
+	if (new_x == enemy->x - 1)
+		enemy_move_up_anim(lay, enemy);
+	if (new_x == enemy->x + 1)
+		enemy_move_down_anim(lay, enemy);
+	if (new_y == enemy->y - 1)
+		enemy_move_left_anim(lay, enemy);
+	if (new_y == enemy->y + 1)
+		enemy_move_right_anim(lay, enemy);
+	enemy->y = new_y;
+	enemy->x = new_x;
 }
+
+// void	ft_enemy_move(t_layout *lay, t_enemy *enemy, size_t new_x, size_t new_y)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (lay->enemies[i] && !lay->enemies[i]->is_dead)
+// 	{
+// 		if (lay->enemies[i]->is_dead)
+// 			i++;
+// 		if (lay->enemies[i]->x != new_x && lay->enemies[i]->y != new_y)
+// 		{
+// 			if (new_x == enemy->x - 1)
+// 				enemy_move_up_anim(lay, enemy);
+// 			if (new_x == enemy->x + 1)
+// 				enemy_move_down_anim(lay, enemy);
+// 			if (new_y == enemy->y - 1)
+// 				enemy_move_left_anim(lay, enemy);
+// 			if (new_y == enemy->y + 1)
+// 				enemy_move_right_anim(lay, enemy);
+// 			enemy->y = new_y;
+// 			enemy->x = new_x;
+// 		}
+// 		i++;
+// 	}
+// }

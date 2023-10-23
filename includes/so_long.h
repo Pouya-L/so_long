@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:50:07 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/18 19:14:14 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/23 02:44:19 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,23 @@
 
 # define CS 100
 # define MAX_ENEMIES 10
-# define KONAMI_CODE "UUDDLRLRBASS"
+# define MAX_CHEAT_CODE_LENGTH 20
 
 enum {
 	KEY_W = 119,
 	KEY_A = 97,
 	KEY_S = 115,
 	KEY_D = 100,
+	KEY_E = 101,
+	KEY_Q = 113,
+	KEY_B = 98,
 	KEY_C = 99,
 	DIRK_UP = 65362,
 	DIRK_LEFT = 65361,
 	DIRK_DOWN = 65364,
 	DIRK_RIGHT = 65363,
 	K_ESC = 65307,
+	K_ENTER = 65293,
 };
 
 typedef struct s_image {
@@ -63,6 +67,9 @@ typedef struct s_image {
 
 typedef struct s_all_img {
 	t_img	*background;
+	t_img	*wall;
+	t_img	*exit;
+	t_img	*collect;
 	t_img	*p_up_0;
 	t_img	*p_up_1;
 	t_img	*p_down_0;
@@ -73,12 +80,20 @@ typedef struct s_all_img {
 	t_img	*p_left;
 	t_img	*p_left_1;
 	t_img	*p_left_2;
-	t_img	*collect;
-	t_img	*wall;
-	t_img	*exit;
-	t_img	*e_left;
+	t_img	*atck_r_0;
+	t_img	*atck_r_1;
+	t_img	*atck_r_2;
+	t_img	*atck_r_3;
+	t_img	*atck_r_4;
+	t_img	*atck_l_0;
+	t_img	*atck_l_1;
+	t_img	*atck_l_2;
+	t_img	*atck_l_3;
+	t_img	*atck_l_4;
 	t_img	*e_up;
+	t_img	*e_up_1;
 	t_img	*e_down;
+	t_img	*e_left;
 	t_img	*e_left_1;
 	t_img	*e_left_2;
 	t_img	*e_left_3;
@@ -86,6 +101,9 @@ typedef struct s_all_img {
 	t_img	*e_right_1;
 	t_img	*e_right_2;
 	t_img	*e_right_3;
+	t_img	*e_death_1;
+	t_img	*e_death_2;
+	t_img	*e_death_3;
 	t_img	*death_0;
 	t_img	*death_1;
 	t_img	*death_2;
@@ -94,13 +112,32 @@ typedef struct s_all_img {
 	t_img	*death_5;
 	t_img	*death_6;
 	t_img	*death_7;
-	t_img	*you_lose;
 	t_img	*you_win;
 }	t_all_img;
+
+typedef struct s_game_over
+{
+	t_img	*lf_0;
+	t_img	*lf_1;
+	t_img	*lf_2;
+	t_img	*lf_3;
+	t_img	*lf_4;
+	t_img	*lf_5;
+	t_img	*lf_6;
+	t_img	*lf_7;
+	t_img	*lf_8;
+	t_img	*lf_9;
+	t_img	*lf_10;
+	t_img	*lf_11;
+	t_img	*lf_12;
+	t_img	*lf_13;
+}	t_game_over;
+
 
 typedef struct s_enemy {
 	size_t		x;
 	size_t		y;
+	int			is_dead;
 }	t_enemy;
 
 typedef struct s_layout {
@@ -125,12 +162,18 @@ typedef struct s_layout {
 	void		*end_mlx;
 	void		*end_win;
 	t_all_img	*all_imgs;
+	t_game_over	*game_over;
+	int			flag_game_over;
+	int			*cheat_code[MAX_CHEAT_CODE_LENGTH];
+	int			key_cnt;
 }	t_layout;
 
 //utils and free functions
 int			on_destroy(t_layout *layout);
 void		on_destroy_1(t_layout *layout);
 void		on_destroy_2(t_layout *layout);
+void		on_destroy_3(t_layout *layout);
+void		on_destroy_4(t_layout *layout);
 int			error_msg_and_free(char *msg, char **map);
 void		free_2d_array(char **map_copy);
 void		ft_mlx_sync(t_layout *layout, int time);
@@ -138,6 +181,7 @@ void		ft_mlx_sync_end(t_layout *layout, int time);
 
 //keyboard and mouse management
 int			ft_key_press(int keysymb, t_layout *layout);
+void		ft_make_all_img_zom_2(t_layout *layout, t_all_img *all_imgs);
 
 //Map check and validation
 void		ft_map_validations(t_layout *layout);
@@ -163,6 +207,7 @@ void		ft_hit_enemy_check(t_layout *layout);
 //Image functions
 t_all_img	*ft_make_all_images(t_layout *layout);
 void		ft_make_all_images_1(t_layout *layout, t_all_img *all_imgs);
+void		ft_make_all_images_2(t_layout *layout, t_all_img *all_imgs);
 t_img		*ft_make_img_xpm(char *path, t_layout *layout);
 void		ft_put_move_number(t_layout *layout);
 void		ft_lose_msg(t_layout *layout);
@@ -173,6 +218,8 @@ void		player_move_up(t_layout *lay);
 void		player_move_down(t_layout *lay);
 void		player_move_right(t_layout *lay);
 void		player_move_left(t_layout *lay);
+void		player_attack_right(t_layout *lay);
+void		player_attack_left(t_layout *lay);
 
 //Enemy spawn and move functions
 t_enemy		*init_enemy(size_t i, size_t j);
@@ -187,10 +234,23 @@ void		player_move_up_anim(t_layout *lay);
 void		player_move_down_anim(t_layout *lay);
 void		player_move_right_anim(t_layout *lay);
 void		player_move_left_anim(t_layout *lay);
+void		player_attack_right_anim(t_layout *lay);
+void		player_attack_left_anim(t_layout *lay);
 void		enemy_move_up_anim(t_layout *lay, t_enemy *enemy);
 void		enemy_move_down_anim(t_layout *lay, t_enemy *enemy);
 void		enemy_move_right_anim(t_layout *lay, t_enemy *enemy);
 void		enemy_move_left_anim(t_layout *lay, t_enemy *enemy);
 void		ft_player_death(t_layout *lay);
+void		enemy_death_anim_right(t_layout *lay);
+void		enemy_death_anim_left(t_layout *lay);
+
+t_game_over	*death_scene_make_all_images(t_layout *lay);
+void		death_scene_render_0(t_layout *lay);
+void		death_scene_rende_1(t_layout *lay);
+t_img		*ft_gameover_xpm(char *path, t_layout *lay);
+void		destroy_game_over_0(t_layout *lay);
+void		destroy_game_over_1(t_layout *lay);
+
+int			compare_arrays(int *arr1, int *arr2, int length);
 
 #endif
