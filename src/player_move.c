@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:36:52 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/19 18:48:25 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:45:07 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	player_move_up(t_layout *lay)
 	next = &lay->map[lay->player_x - 1][lay->player_y];
 	if (lay->map[lay->player_x - 1][lay->player_y] == 'E' && \
 	lay->n_collect == 0)
-		on_destroy(lay);
+		ft_win_msg(lay);
 	else if (lay->map[lay->player_x - 1][lay->player_y] == 'C')
 		lay->n_collect--;
 	if (*next != 'E' && *next != '1')
@@ -47,7 +47,7 @@ void	player_move_down(t_layout *lay)
 	next = &lay->map[lay->player_x + 1][lay->player_y];
 	if (lay->map[lay->player_x + 1][lay->player_y] == 'E' && \
 	lay->n_collect == 0)
-		on_destroy(lay);
+		ft_win_msg(lay);
 	else if (lay->map[lay->player_x + 1][lay->player_y] == 'C')
 		lay->n_collect--;
 	if (*next != '1' && *next != 'E')
@@ -74,7 +74,7 @@ void	player_move_right(t_layout *lay)
 	next = &lay->map[lay->player_x][lay->player_y + 1];
 	if (lay->map[lay->player_x][lay->player_y + 1] == 'E' && \
 	lay->n_collect == 0)
-		on_destroy(lay);
+		ft_win_msg(lay);
 	else if (lay->map[lay->player_x][lay->player_y + 1] == 'C')
 		lay->n_collect--;
 	if (*next != 'E' && *next != '1')
@@ -101,7 +101,7 @@ void	player_move_left(t_layout *lay)
 	next = &lay->map[lay->player_x][lay->player_y - 1];
 	if (lay->map[lay->player_x][lay->player_y - 1] == 'E' && \
 	lay->n_collect == 0)
-		on_destroy(lay);
+		ft_win_msg(lay);
 	else if (lay->map[lay->player_x][lay->player_y - 1] == 'C')
 		lay->n_collect--;
 	if (*next != 'E' && *next != '1')

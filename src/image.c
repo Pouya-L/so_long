@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:53:04 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/23 02:56:20 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/23 10:41:48 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+//Puts the initial images on the map and renders the initial frame of the game
 void	ft_map_characters(t_layout *lay, t_all_img *all_imgs, int i, int j)
 {
 	if (lay->map[i][j] == '1')
@@ -31,7 +32,8 @@ void	ft_map_characters(t_layout *lay, t_all_img *all_imgs, int i, int j)
 		all_imgs->collect->img, j * CS, i * CS);
 }
 
-//DO NOT FORGET TO FREE < STATUS NOT FREED >
+//Makes the pointer to all_images so that later we can make the images.
+//It takes care of map, player and player attack assets
 t_all_img	*ft_make_all_images(t_layout *layout)
 {
 	t_all_img	*all_imgs;
@@ -61,6 +63,8 @@ t_all_img	*ft_make_all_images(t_layout *layout)
 	return (all_imgs);
 }
 
+//Makes the pointer to all_images so that later we can make the images.
+//It takes care of enemy, enemy death and player attack assets
 void	ft_make_all_images_1(t_layout *layout, t_all_img *all_imgs)
 {
 	all_imgs->atck_l_4 = ft_make_img_xpm("images/atck_l_4.xpm", layout);
@@ -86,6 +90,8 @@ void	ft_make_all_images_1(t_layout *layout, t_all_img *all_imgs)
 	ft_make_all_images_2(layout, all_imgs);
 }
 
+//Makes the pointer to all_images so that later we can make the images.
+//It takes care of player death assets
 void	ft_make_all_images_2(t_layout *layout, t_all_img *all_imgs)
 {
 	all_imgs->death_0 = ft_make_img_xpm("images/death_0.xpm", layout);
@@ -98,8 +104,15 @@ void	ft_make_all_images_2(t_layout *layout, t_all_img *all_imgs)
 	all_imgs->death_7 = ft_make_img_xpm("images/death_7.xpm", layout);
 }
 
+//Makes the pointer to all_images so that later we can make the images.
+//It frees the images made for zom_1 and then makes the images for zom_2
 void	ft_make_all_img_zom_2(t_layout *layout, t_all_img *all_imgs)
 {
+	on_destroy_2(layout);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->e_death_2->img);
+	free(layout->all_imgs->e_death_2);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->e_death_3->img);
+	free(layout->all_imgs->e_death_3);
 	all_imgs->e_left = ft_make_img_xpm("images/zom_2_left_0.xpm", layout);
 	all_imgs->e_left_1 = ft_make_img_xpm("images/zom_2_left_1.xpm", layout);
 	all_imgs->e_left_2 = ft_make_img_xpm("images/zom_2_left_2.xpm", layout);
@@ -114,31 +127,4 @@ void	ft_make_all_img_zom_2(t_layout *layout, t_all_img *all_imgs)
 	all_imgs->e_death_1 = ft_make_img_xpm("images/zom_2_death_1.xpm", layout);
 	all_imgs->e_death_2 = ft_make_img_xpm("images/zom_2_death_2.xpm", layout);
 	all_imgs->e_death_3 = ft_make_img_xpm("images/zom_2_death_3.xpm", layout);
-}
-
-//DO NOT FORGET TO FREE < STATUS NOT FREED >
-t_img	*ft_make_img_xpm(char *path, t_layout *layout)
-{
-	t_img	*image;
-	int		width;
-	int		height;
-
-	image = malloc(sizeof(t_img));
-	if (!image)
-		return (0);
-	image->img = mlx_xpm_file_to_image(layout->mlx, path, &width, &height);
-	image->addr = mlx_get_data_addr(image->img, \
-	&(image->bits_per_pixel), &(image->line_length), &(image->endian));
-	return (image);
-}
-
-void	ft_put_move_number(t_layout *layout)
-{
-	char	*moves;
-
-	moves = ft_itoa(layout->move_cnt++);
-	mlx_put_image_to_window(layout->mlx, layout->mlx_win, \
-	layout->all_imgs->wall->img, 0 * CS, 0 * CS);
-	mlx_string_put(layout->mlx, layout->mlx_win, 10, 20, 0xffffffff, moves);
-	free(moves);
 }

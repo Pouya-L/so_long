@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: plashkar <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/14 13:37:11 by plashkar          #+#    #+#              #
-#    Updated: 2023/10/19 21:30:26 by plashkar         ###   ########.fr        #
+#    Updated: 2023/10/23 12:28:40 by plashkar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,18 +25,22 @@ LIBFT_A = $(LIBFT_DIR)/libft.a
 SO_LONG_LIB = so_long.a
 
 SRC = \
-	src/utils.c \
+	src/utils_0.c \
+	src/utils_1.c \
 	src/map_checks.c \
 	src/path_checks.c \
 	src/map.c \
 	src/player_move.c \
 	src/player_attack.c \
+	src/player_attack_animations.c \
 	src/player_animations.c \
 	src/enemy_animations.c \
 	src/enemy.c \
 	src/game.c \
 	src/image.c \
-	src/game_over.c \
+	src/destroy.c \
+	src/game_over_0.c \
+	src/game_over_1.c \
 
 OBJ = $(SRC:.c=.o)
 

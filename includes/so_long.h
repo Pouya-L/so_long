@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:50:07 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/23 02:44:19 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:27:11 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,8 @@ typedef struct s_game_over
 	t_img	*lf_11;
 	t_img	*lf_12;
 	t_img	*lf_13;
+	t_img	*win_0;
 }	t_game_over;
-
 
 typedef struct s_enemy {
 	size_t		x;
@@ -164,8 +164,6 @@ typedef struct s_layout {
 	t_all_img	*all_imgs;
 	t_game_over	*game_over;
 	int			flag_game_over;
-	int			*cheat_code[MAX_CHEAT_CODE_LENGTH];
-	int			key_cnt;
 }	t_layout;
 
 //utils and free functions
@@ -181,6 +179,7 @@ void		ft_mlx_sync_end(t_layout *layout, int time);
 
 //keyboard and mouse management
 int			ft_key_press(int keysymb, t_layout *layout);
+void		ft_key_press_player(int keysymb, t_layout *layout);
 void		ft_make_all_img_zom_2(t_layout *layout, t_all_img *all_imgs);
 
 //Map check and validation
@@ -244,13 +243,12 @@ void		ft_player_death(t_layout *lay);
 void		enemy_death_anim_right(t_layout *lay);
 void		enemy_death_anim_left(t_layout *lay);
 
+//Game over death scene functions
 t_game_over	*death_scene_make_all_images(t_layout *lay);
 void		death_scene_render_0(t_layout *lay);
 void		death_scene_rende_1(t_layout *lay);
 t_img		*ft_gameover_xpm(char *path, t_layout *lay);
 void		destroy_game_over_0(t_layout *lay);
 void		destroy_game_over_1(t_layout *lay);
-
-int			compare_arrays(int *arr1, int *arr2, int length);
 
 #endif

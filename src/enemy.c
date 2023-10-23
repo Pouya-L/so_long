@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:47:09 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/19 23:04:18 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:16:28 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+//sets the x and y of enemies in the array of enemies and counts their number
 void	ft_make_enemies(t_layout *layout)
 {
 	int		i;
@@ -33,6 +34,8 @@ void	ft_make_enemies(t_layout *layout)
 	layout->n_enemy = j;
 }
 
+//Spawns enemies at random locations throughout the map.
+//Returns a pinter to them containing their x & y
 t_enemy	*ft_spawn_enemies(t_layout *lay)
 {
 	size_t	i;
@@ -58,6 +61,8 @@ t_enemy	*ft_spawn_enemies(t_layout *lay)
 	return (0);
 }
 
+//Makes the pointer to the enemy and stores their x and y.
+//it dynamically allocates the memory needed for enemy struct
 t_enemy	*init_enemy(size_t i, size_t j)
 {
 	t_enemy	*enemy;
@@ -71,6 +76,7 @@ t_enemy	*init_enemy(size_t i, size_t j)
 	return (enemy);
 }
 
+//Generates random enemy movement
 int	ft_enemy_move_gen(t_layout *l)
 {
 	int		mv_x;
@@ -100,6 +106,7 @@ int	ft_enemy_move_gen(t_layout *l)
 	return (0);
 }
 
+//Animates random enemy movement
 void	ft_enemy_move(t_layout *lay, t_enemy *enemy, size_t new_x, size_t new_y)
 {
 	if (new_x == enemy->x - 1)
@@ -113,29 +120,3 @@ void	ft_enemy_move(t_layout *lay, t_enemy *enemy, size_t new_x, size_t new_y)
 	enemy->y = new_y;
 	enemy->x = new_x;
 }
-
-// void	ft_enemy_move(t_layout *lay, t_enemy *enemy, size_t new_x, size_t new_y)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (lay->enemies[i] && !lay->enemies[i]->is_dead)
-// 	{
-// 		if (lay->enemies[i]->is_dead)
-// 			i++;
-// 		if (lay->enemies[i]->x != new_x && lay->enemies[i]->y != new_y)
-// 		{
-// 			if (new_x == enemy->x - 1)
-// 				enemy_move_up_anim(lay, enemy);
-// 			if (new_x == enemy->x + 1)
-// 				enemy_move_down_anim(lay, enemy);
-// 			if (new_y == enemy->y - 1)
-// 				enemy_move_left_anim(lay, enemy);
-// 			if (new_y == enemy->y + 1)
-// 				enemy_move_right_anim(lay, enemy);
-// 			enemy->y = new_y;
-// 			enemy->x = new_x;
-// 		}
-// 		i++;
-// 	}
-// }

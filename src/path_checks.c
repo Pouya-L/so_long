@@ -6,12 +6,13 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:29:40 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/10 17:44:13 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:28:42 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+//Creates a copy of the map for flood fill algo
 int	map_copy_and_check(t_layout *layout)
 {
 	char	**map_copy;
@@ -33,6 +34,8 @@ int	map_copy_and_check(t_layout *layout)
 		return (0);
 }
 
+//Flood fill algorythm to check for possible path to the exit.
+//It sets the map points it visits to 'V' so that it doesn't loop indefinitly
 void	ft_check_path(t_layout *layout, size_t x, size_t y, char **map_cpy)
 {
 	if (map_cpy[x][y] == 'V' || map_cpy[x][y] == '1')
@@ -51,6 +54,7 @@ void	ft_check_path(t_layout *layout, size_t x, size_t y, char **map_cpy)
 	ft_check_path(layout, x, y - 1, map_cpy);
 }
 
+//Frees a 2 d array, used for freeing the map copy created
 void	free_2d_array(char **map_copy)
 {
 	size_t	i;
@@ -68,6 +72,7 @@ void	free_2d_array(char **map_copy)
 	map_copy = NULL;
 }
 
+//Prints custom error message and frees map array if needed
 int	error_msg_and_free(char *msg, char **map)
 {
 	int	i;
@@ -87,6 +92,7 @@ int	error_msg_and_free(char *msg, char **map)
 	exit (0);
 }
 
+//Prints map details for debugging
 void	print_map_details(t_layout *layout)
 {
 	int	i;

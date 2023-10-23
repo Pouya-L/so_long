@@ -6,12 +6,14 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 10:13:22 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/10 18:38:03 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:25:59 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+//Reads the lines and allocate the memory for hte 2d map and creates the map
+//it also checks if the map is rectangular or not, updates the map info struct
 void	ft_map_allocate(t_layout *layout, char **argv)
 {
 	size_t	i;
@@ -41,6 +43,7 @@ void	ft_map_allocate(t_layout *layout, char **argv)
 	close(fd);
 }
 
+//counts number of lines in order to be able to check for map shape later
 int	ft_count_lines(char **argv)
 {
 	int		line_cnt;
@@ -61,6 +64,8 @@ int	ft_count_lines(char **argv)
 	return (line_cnt);
 }
 
+//checks for 'P' & 'E' & 'C' & 'G' chars and counts them
+//it also checks if there are any chars that are invalid & updates the flag
 void	ft_layout_struct_updater(t_layout *layout)
 {
 	int	i;
@@ -88,6 +93,7 @@ void	ft_layout_struct_updater(t_layout *layout)
 	}
 }
 
+//checks for the player and exit coordiantes & saves them in the struct
 void	ft_player_and_exit_coordinates(t_layout *layout)
 {
 	size_t	i;

@@ -1,17 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/27 16:36:55 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/23 02:53:20 by plashkar         ###   ########.fr       */
+/*   Created: 2023/10/23 10:05:50 by plashkar          #+#    #+#             */
+/*   Updated: 2023/10/23 10:38:14 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+/*Free functions for imgs created by mlx and the pointers assigned by me.
+It runs on destroy_1 & destroy_2 & destroy_3 before destroying the window
+& display. then it frees the 2d array where the map is stored finally it frees
+ the mlx pointer and depending on the flag of game_over it exits or returns */
 int	on_destroy(t_layout *layout)
 {
 	int	i;
@@ -41,6 +45,8 @@ int	on_destroy(t_layout *layout)
 		exit (0);
 }
 
+//helper to on_destroy, needed due to line count limitation
+//destroys player images
 void	on_destroy_1(t_layout *layout)
 {
 	mlx_destroy_image(layout->mlx, layout->all_imgs->p_up_0->img);
@@ -65,6 +71,8 @@ void	on_destroy_1(t_layout *layout)
 	free(layout->all_imgs->p_left_2);
 }
 
+//helper to on_destroy, needed due to line count limitation
+//destroys enemy images
 void	on_destroy_2(t_layout *layout)
 {
 	mlx_destroy_image(layout->mlx, layout->all_imgs->e_up->img);
@@ -93,6 +101,8 @@ void	on_destroy_2(t_layout *layout)
 	free(layout->all_imgs->e_death_1);
 }
 
+//helper to on_destroy, needed due to line count limitation
+//destroys player death animation frames
 void	on_destroy_3(t_layout *layout)
 {
 	mlx_destroy_image(layout->mlx, layout->all_imgs->death_0->img);
@@ -118,6 +128,8 @@ void	on_destroy_3(t_layout *layout)
 	on_destroy_4(layout);
 }
 
+//helper to on_destroy, needed due to line count limitation
+//destroys player attack animation frames
 void	on_destroy_4(t_layout *layout)
 {
 	mlx_destroy_image(layout->mlx, layout->all_imgs->atck_l_0->img);
@@ -140,38 +152,4 @@ void	on_destroy_4(t_layout *layout)
 	free(layout->all_imgs->atck_r_3);
 	mlx_destroy_image(layout->mlx, layout->all_imgs->atck_r_4->img);
 	free(layout->all_imgs->atck_r_4);
-}
-
-int	ft_key_press(int keysymb, t_layout *layout)
-{
-	ft_player_and_exit_coordinates(layout);
-	if (keysymb == K_ESC)
-		on_destroy(layout);
-	else if (keysymb == KEY_W || keysymb == DIRK_UP)
-		player_move_up(layout);
-	else if (keysymb == KEY_A || keysymb == DIRK_LEFT)
-		player_move_left(layout);
-	else if (keysymb == KEY_S || keysymb == DIRK_DOWN)
-		player_move_down(layout);
-	else if (keysymb == KEY_D || keysymb == DIRK_RIGHT)
-		player_move_right(layout);
-	else if (keysymb == KEY_E)
-		player_attack_right(layout);
-	else if (keysymb == KEY_Q)
-		player_attack_left(layout);
-	else if (keysymb == KEY_B)
-		ft_make_all_img_zom_2(layout, layout->all_imgs);
-	return (0);
-}
-
-void	ft_mlx_sync(t_layout *layout, int time)
-{
-	mlx_do_sync(layout->mlx);
-	usleep(time);
-}
-
-void	ft_mlx_sync_end(t_layout *layout, int time)
-{
-	mlx_do_sync(layout->end_mlx);
-	usleep(time);
 }

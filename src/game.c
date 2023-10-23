@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:47:43 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/19 16:22:24 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:12:55 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+//Initializes the mlx pointer, creates the window realted to the size of map,
+//Puts the initial images to the window. Inits the enemies at random x and y
+//Makes each of those enemies move randomly and loops it through mlx_loop_hook
+//loops ft_key_press and on_destory on click x to listen for user inputs always
 int	game_init(t_layout *layout)
 {
 	layout->mlx = mlx_init();
@@ -28,6 +32,7 @@ int	game_init(t_layout *layout)
 	return (0);
 }
 
+//Puts the initial images to the window. Essentialy rendering the 1st frame
 void	ft_initial_map_to_screen(t_layout *layout)
 {
 	int	i;
