@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:47:43 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/23 11:12:55 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:20:56 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_initial_map_to_screen(t_layout *layout)
 
 	i = 0;
 	layout->all_imgs = ft_make_all_images(layout);
+	layout->player_health = 3;
 	while (layout->map[i])
 	{
 		j = 0;
@@ -50,4 +51,6 @@ void	ft_initial_map_to_screen(t_layout *layout)
 		}
 		i++;
 	}
+	mlx_put_image_to_window(layout->mlx, layout->mlx_win, \
+	layout->all_imgs->health_3->img, (layout->n_col - 1) * CS, 0 * CS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_animations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plashkar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:38:20 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/19 18:52:14 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:07:46 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,18 +122,6 @@ void	player_move_left_anim(t_layout *lay)
 
 void	ft_player_death(t_layout *lay)
 {
-	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
-	lay->all_imgs->death_0->img, lay->player_y * CS, lay->player_x * CS);
-	ft_mlx_sync(lay, 100000);
-	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
-	lay->all_imgs->death_1->img, lay->player_y * CS, lay->player_x * CS);
-	ft_mlx_sync(lay, 100000);
-	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
-	lay->all_imgs->death_2->img, lay->player_y * CS, lay->player_x * CS);
-	ft_mlx_sync(lay, 100000);
-	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
-	lay->all_imgs->death_3->img, lay->player_y * CS, lay->player_x * CS);
-	ft_mlx_sync(lay, 100000);
 	mlx_put_image_to_window(lay->mlx, lay->mlx_win, \
 	lay->all_imgs->death_4->img, lay->player_y * CS, lay->player_x * CS);
 	ft_mlx_sync(lay, 100000);

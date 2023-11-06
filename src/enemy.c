@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:47:09 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/23 11:16:28 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:38:12 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ int	ft_enemy_move_gen(t_layout *l)
 	int		i;
 
 	i = 0;
-	while (l->enemies[i])
+	while (l->enemies[i] && !l->flag_atk_anim_status)
 	{
-		if (!l->enemies[i]->is_dead)
+		if (!l->enemies[i]->is_dead && !l->flag_atk_anim_status)
 		{
 			mv_x = (rand() % 3 - 1);
 			mv_y = (rand() % 3 - 1);
@@ -102,7 +102,6 @@ int	ft_enemy_move_gen(t_layout *l)
 		}
 		i++;
 	}
-	ft_mlx_sync(l, 100);
 	return (0);
 }
 

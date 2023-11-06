@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 09:50:07 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/23 13:27:11 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:38:44 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,9 @@ typedef struct s_all_img {
 	t_img	*death_6;
 	t_img	*death_7;
 	t_img	*you_win;
+	t_img	*health_1;
+	t_img	*health_2;
+	t_img	*health_3;
 }	t_all_img;
 
 typedef struct s_game_over
@@ -164,6 +167,8 @@ typedef struct s_layout {
 	t_all_img	*all_imgs;
 	t_game_over	*game_over;
 	int			flag_game_over;
+	int			flag_atk_anim_status;
+	int			player_health;
 }	t_layout;
 
 //utils and free functions
@@ -250,5 +255,6 @@ void		death_scene_rende_1(t_layout *lay);
 t_img		*ft_gameover_xpm(char *path, t_layout *lay);
 void		destroy_game_over_0(t_layout *lay);
 void		destroy_game_over_1(t_layout *lay);
+void		ft_hurt(t_layout *lay);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:53:04 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/23 10:41:48 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:21:08 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ void	ft_make_all_images_2(t_layout *layout, t_all_img *all_imgs)
 	all_imgs->death_5 = ft_make_img_xpm("images/death_5.xpm", layout);
 	all_imgs->death_6 = ft_make_img_xpm("images/death_6.xpm", layout);
 	all_imgs->death_7 = ft_make_img_xpm("images/death_7.xpm", layout);
+	all_imgs->health_1 = ft_make_img_xpm("images/Health_1.xpm", layout);
+	all_imgs->health_2 = ft_make_img_xpm("images/Health_2.xpm", layout);
+	all_imgs->health_3 = ft_make_img_xpm("images/Health_3.xpm", layout);
 }
 
 //Makes the pointer to all_images so that later we can make the images.

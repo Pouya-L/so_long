@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 10:05:50 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/23 10:38:14 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:23:01 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ void	on_destroy_1(t_layout *layout)
 	free(layout->all_imgs->p_left_1);
 	mlx_destroy_image(layout->mlx, layout->all_imgs->p_left_2->img);
 	free(layout->all_imgs->p_left_2);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->health_1->img);
+	free(layout->all_imgs->health_1);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->health_2->img);
+	free(layout->all_imgs->health_2);
 }
 
 //helper to on_destroy, needed due to line count limitation
@@ -125,6 +129,8 @@ void	on_destroy_3(t_layout *layout)
 	free(layout->all_imgs->e_death_2);
 	mlx_destroy_image(layout->mlx, layout->all_imgs->e_death_3->img);
 	free(layout->all_imgs->e_death_3);
+	mlx_destroy_image(layout->mlx, layout->all_imgs->health_3->img);
+	free(layout->all_imgs->health_3);
 	on_destroy_4(layout);
 }
 

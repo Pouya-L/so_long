@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 21:20:31 by plashkar          #+#    #+#             */
-/*   Updated: 2023/10/23 10:59:12 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:39:09 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void	player_attack_right(t_layout *lay)
 {
 	int	i;
 
-	i = 0;
+	lay->flag_atk_anim_status = 1;
 	player_attack_right_anim(lay);
 	if (lay->map[lay->player_x][lay->player_y + 1] == 'Z')
 	{
+		i = 0;
 		while (lay->enemies[i] && !lay->enemies[i]->is_dead)
 		{
 			if (lay->enemies[i]->x == lay->player_x && lay->enemies[i]->y == \
@@ -36,6 +37,7 @@ void	player_attack_right(t_layout *lay)
 		lay->all_imgs->background->img, ((lay->player_y + 1) * CS), \
 		(lay->player_x * CS));
 	}
+	lay->flag_atk_anim_status = 0;
 }
 
 //Player attack function
@@ -45,11 +47,12 @@ void	player_attack_left(t_layout *lay)
 {
 	int	i;
 
-	i = 0;
+	lay->flag_atk_anim_status = 1;
 	player_attack_left_anim(lay);
 	if (lay->map[lay->player_x][lay->player_y - 1] == 'Z')
 	{
-		while (lay->enemies[i] && !lay->enemies[i]->is_dead)
+		i = 0;
+		while (lay->enemies[i])
 		{
 			if (lay->enemies[i]->x == lay->player_x && lay->enemies[i]->y == \
 			lay->player_y - 1)
@@ -62,4 +65,5 @@ void	player_attack_left(t_layout *lay)
 		lay->all_imgs->background->img, ((lay->player_y - 1) * CS), \
 		(lay->player_x * CS));
 	}
+	lay->flag_atk_anim_status = 0;
 }
