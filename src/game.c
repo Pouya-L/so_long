@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:47:43 by plashkar          #+#    #+#             */
-/*   Updated: 2023/11/06 17:20:56 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:30:43 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	game_init(t_layout *layout)
 }
 
 //Puts the initial images to the window. Essentialy rendering the 1st frame
+////Set the player health to 3 & puts the 3 hearts in the top right corner
 void	ft_initial_map_to_screen(t_layout *layout)
 {
 	int	i;

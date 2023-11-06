@@ -6,7 +6,7 @@
 /*   By: plashkar <plashkar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:36:52 by plashkar          #+#    #+#             */
-/*   Updated: 2023/11/06 17:06:20 by plashkar         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:31:02 by plashkar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ void	player_move_left(t_layout *l)
 		l->player_x * CS);
 }
 
+//decrements player_health by one & plays the hurt animation & puts the hearts
+//it also plays the death animation if it's the last heart
 void	ft_hurt(t_layout *lay)
 {
 	lay->player_health--;
