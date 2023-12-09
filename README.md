@@ -1,6 +1,8 @@
 # Project Overview
 This project presents a compact 2D game that focuses on integrating textures, sprites, and fundamental gameplay elements. The primary goal is to provide hands-on experience with these graphical aspects.
 
+https://github.com/Pouya-L/so_long/assets/119332828/fc194d29-2636-4818-9fbf-fae591cc58df
+
 # Minilibx
 ## Graphic Library: Minilibx
 This project exclusively utilizes the Minilibx (MLX), a simplistic graphic library supplied with the project specifications. You can locate it on [GitHub](https://github.com/42Paris/minilibx-linux) 
@@ -26,6 +28,8 @@ Awakening in a dungeon with only a katana and a faint memory of a loved one's re
 - Attack right with E and left with Q.
 - Health points (3 in total) are displayed on the right; losing all leads to death. Although, try to die once, it might be intresting!
 - Discover an Easter egg to transform zombies into Barbie zombies.
+
+https://github.com/Pouya-L/so_long/assets/119332828/03d69cd7-c6b7-4ebc-a0e7-3d324ec40f47
 
 # What I Learned
 ## Key Takeaways
