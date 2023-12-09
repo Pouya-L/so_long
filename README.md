@@ -29,7 +29,7 @@ This project exclusively utilizes the Minilibx (MLX), a simplistic graphic libra
 - Health points (3 in total) are displayed on the right; losing all leads to death. Although, try to die once, it might be intresting!
 - Discover an Easter egg to transform zombies into Barbie zombies.
 
-https://github.com/Pouya-L/so_long/assets/119332828/d1d2523c-bf9d-42fd-87ba-55ac6e979468\
+https://github.com/Pouya-L/so_long/assets/119332828/d1d2523c-bf9d-42fd-87ba-55ac6e979468
 
 # What I Learned
 ## Key Takeaways
