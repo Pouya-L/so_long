@@ -48,4 +48,4 @@ Encountering dynamic random enemies posed a significant challenge. Avoiding the 
 ## Favorite Project Experience
 Among my various projects, this stands out as a favorite. Witnessing tangible progress with each code addition was gratifying. While not as formidable as previous projects, the creative enjoyment derived from developing this small game was immensely rewarding. Looking forward, I may revisit and refine aspects when time permits, but for now, attention is directed towards other project commitments. 😊
 
-###Special thanks to ashuuya on [OpenGameArt](https://opengameart.org/users/ashuuya), I used their spirits, added shadows, and made a few new frames when needed.
+### Special thanks to ashuuya on [OpenGameArt](https://opengameart.org/users/ashuuya), I used their spirits, added shadows, and made a few new frames when needed.
