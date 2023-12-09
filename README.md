@@ -32,7 +32,6 @@ This project exclusively utilizes the Minilibx (MLX), a simplistic graphic libra
 https://github.com/Pouya-L/so_long/assets/119332828/d1d2523c-bf9d-42fd-87ba-55ac6e979468
 
 # What I Learned
-## Key Takeaways
 In the course of this project, I acquired valuable insights into:
 - Utilizing a simple graphic interface (MLX).
 - Managing events through hook functions.
