@@ -4,7 +4,7 @@ This project presents a compact 2D game that focuses on integrating textures, sp
 # Storyline
 Awakening in a dungeon with only a katana and a faint memory of a loved one's request for sentient eggplants, you encounter tranquilized zombies. Although non-aggressive, these zombies pose a threat if you collide with them, you'll get hurt and might die. Eliminate them using your katana. Collect all eggplants and find the exit to escape the dungeon.
 
-https://github.com/Pouya-L/so_long/assets/119332828/fc194d29-2636-4818-9fbf-fae591cc58df
+https://github.com/Pouya-L/so_long/assets/119332828/adaa2968-e182-4bb4-bc68-7f3f0c70db32
 
 # Minilibx
 ## Graphic Library: Minilibx
@@ -29,7 +29,7 @@ This project exclusively utilizes the Minilibx (MLX), a simplistic graphic libra
 - Health points (3 in total) are displayed on the right; losing all leads to death. Although, try to die once, it might be intresting!
 - Discover an Easter egg to transform zombies into Barbie zombies.
 
-https://github.com/Pouya-L/so_long/assets/119332828/03d69cd7-c6b7-4ebc-a0e7-3d324ec40f47
+https://github.com/Pouya-L/so_long/assets/119332828/d1d2523c-bf9d-42fd-87ba-55ac6e979468\
 
 # What I Learned
 ## Key Takeaways
@@ -38,7 +38,7 @@ In the course of this project, I acquired valuable insights into:
 - Managing events through hook functions.
 - Employing the random number generation function from the math library.
 - Enhancing variable definitions and error messages for code readability.
-- Using procreate to edit and make new sprites.
+- Using Procreate to edit and make new sprites.
 - Improving skills in creating effective tests and seeking assistance from peers.
 
 ## Challenges Faced
@@ -48,4 +48,4 @@ Encountering dynamic random enemies posed a significant challenge. Avoiding the 
 ## Favorite Project Experience
 Among my various projects, this stands out as a favorite. Witnessing tangible progress with each code addition was gratifying. While not as formidable as previous projects, the creative enjoyment derived from developing this small game was immensely rewarding. Looking forward, I may revisit and refine aspects when time permits, but for now, attention is directed towards other project commitments. 😊
 
-###Special thanks to ashuuya on [OpenGameArt](https://opengameart.org/users/ashuuya), I sued to their spirits, added shadows, made a few new frames when needed. 
+###Special thanks to ashuuya on [OpenGameArt](https://opengameart.org/users/ashuuya), I used their spirits, added shadows, and made a few new frames when needed.
